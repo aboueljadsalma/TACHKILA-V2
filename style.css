@@ -1,0 +1,7 @@
+.fenetre-formulaire {
+    display: none;
+}
+
+.fenetre-formulaire.ouverte {
+    display: flex;
+}
