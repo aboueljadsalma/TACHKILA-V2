@@ -25,7 +25,7 @@ export const validerDonneesJoueur = (
     numero,
     posteSelectionne,
     joueurs,
-    age-joueur,
+    age,
     indexJoueurAModifier
 ) => {
     if (

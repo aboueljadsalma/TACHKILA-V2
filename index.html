@@ -47,7 +47,125 @@
 
      </header>
      
-    
+     <section>
+        <div class=" flex items-center justify-between">
+            <div class="m-9">
+                <h1 class="font-bold text-4xl text-white">Effectif</h1>
+                <h3 class="text-gray-400 text-xl">Gérez les joueurs du club ATLAS FC.</h3>
+            </div>
+        
+            <button type="button" id="ouvrir-formulaire" class="bg-pink-200 py-4 px-20 rounded-lg font-bold m-9 text-gray-500 ">
+                + Ajouter unjoueur
+            </button>
+
+            <div class="fenetre-formulaire fixed inset-0 z-50 items-center justify-center " aria-hidden="true">
+        <div class="absolute inset-0 flex justify-center items-center bg-zinc-950/50">
+            <form id="formulaire-joueurs" class="bg-gray-700 w-[30%] rounded-xl p-10 flex flex-col gap-5"
+                aria-labelledby="titre-formulaire">
+                <div class="flex items-center justify-between">
+                    <h2 id="titre-formulaire" class="text-xl font-serif m-5 text-white font-bold">Ajouter un joueur</h2>
+                    <button type="button"
+                        class="bg-pink-200 rounded-full px-2 text-gray-700 fermer-formulaire">X</button>
+                </div>
+
+                <div class="flex flex-col">
+                    <label for="nom-joueur" class="text-white">Nom et Prénom</label>
+                    <input id="nom-joueur" class="rounded-xl p-3 bg-slate-600 text-white" type="text"
+                        placeholder="Ex. Samia Tazi" required>
+                </div>
+
+                <div>
+                    <label class="text-white">Poste :</label>
+                    <div class="grid grid-cols-2">
+                        <div>
+                            <input type="radio" class="accent-purple-900 p-3" name="poste-joueur" value="Gardien"
+                                id="poste-gardien" required>
+                            <label for="poste-gardien" class="text-gray-400">Gardien</label>
+                        </div>
+                        <div>
+                             <input type="radio" class="accent-pink-300" name="poste-joueur" value="Milieu"
+                                id="poste-milieu">
+                            <label for="poste-milieu" class="text-gray-400">Milieu</label>
+                        </div>
+                        <div>
+                            <input type="radio" class="accent-purple-500" name="poste-joueur" value="Défenseur"
+                            id="poste-defenseur">
+                            <label for="poste-defenseur" class="text-gray-400">Défenseur</label>
+                        </div>
+                        <div>
+                            <input type="radio" class="accent-green-300" name="poste-joueur" value="Attaquant" id="poste-attaquant">
+                            <label for="poste-attaquant" class="text-gray-400">Attaquant</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2">
+                    <div>
+                        <label for="numero-joueur" class="flex flex-col text-white">Numéro (1 à 99)</label>
+                        <input id="numero-joueur" type="number" min="1" max="99"
+                            class="rounded-xl p-3 bg-slate-600 text-white" placeholder="Ex. 5" required>
+                        <p id="retour-formulaire" class="text-red-300 text-sm" role="alert" hidden></p>
+                    </div>
+
+                    <div>
+                        <label for="age" class="flex flex-col text-white">L'âge (18 à 39 ans)</label>
+                        <input type="number" id="age" min="18" max="39" class="rounded-xl p-3 bg-slate-600 text-white flex justify-center " placeholder="Ex. 5" required>
+                    </div>
+                </div>
+                
+                <div>
+                    <Label class="flex flex-col text-white">Statut</Label>
+                    <select class="rounded-xl p-3 bg-slate-600 text-gray-400" required>
+                        <option >EN FORME</option>
+                        <option >BLESSES</option>
+                    </select>
+                </div>     
+
+                <div class="flex flex-row justify-end gap-2">
+                    <button type="button" class="bg-slate-600 rounded-xl px-5 py-1.5 fermer-formulaire">Annuler</button>
+                    <button type="submit" class="bg-pink-200 rounded-xl px-5 py-1.5 bouton-ajouter">Ajouter</button>
+                </div>
+                   
+            </form>
+        </div>
+    </div>
+
+        </div>
+        <div class="flex items-center justify-around text-white gap-5 p-5">
+            <div class="bg-gray-500 p-3 rounded-xl flex-1">
+                <h4 class="text-blue-200">TOTAL EFFECTIF</h4>
+                <p id="compteur-joueurs" class="text-xl">0</p>
+            </div>
+
+            <div class="bg-gray-500 p-3 px-8 rounded-xl flex-1">
+                <h4 class="text-blue-200">EN FORME</h4>
+                <p class="text-xl text-green-300">13</p>
+            </div>
+
+            <div class="bg-gray-500 p-3 px-10 rounded-xl flex-1">
+                <h4 class="text-blue-200">BLESSES </h4>
+                <p class="text-xl text-red-400">2</p>
+            </div>
+
+            <div class="bg-gray-500 p-3 px-5 rounded-xl flex-1">
+                <h4 class="text-blue-200">AGE MOYEN </h4>
+                <p class="text-xl">18 ans</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-4  py-3 m-5 bg-gray-500 rounded-xl">
+            <input class="flex-1 m-3 text-gray-400 bg-gray-700 rounded-lg px-3" type="text" placeholder="Rechercher un joueur par nom...">
+            <ul class="w-[20%] flex gap-5 items-center justify-center bg-gray-700 rounded-lg m-3">
+                <li>Tous</li>
+                <li>GB</li>
+                <li>DEF</li>
+                <li>MIL</li>
+                <li>ATT</li>
+            </ul>
+        </div>
+       <div id="liste-joueurs" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 p-5">
+           
+        </div>
+    </section>
     
 </body>
 </html>
