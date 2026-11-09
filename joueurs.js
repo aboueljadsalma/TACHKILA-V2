@@ -14,7 +14,8 @@ import {
     titreFormulaire,
     boutonAjouter,
     afficherErreur,
-    effacerErreur
+    effacerErreur,
+    age
 } from "./interface.js";
 
 import {
@@ -50,6 +51,16 @@ export const afficherJoueurs = () => {
         poste.className = "text-pink-300 text-sm";
         poste.textContent = joueur.poste;
 
+        const ageJoueur = document.createElement("p");
+        ageJoueur.className = "text-gray-900 text-xl";
+        ageJoueur.textContent = joueur.age;
+
+        const statut = document.createElement("p");
+        statut.className = joueur.statut === "EN FORME"
+            ? "text-blue-100 text-sm"
+            : "text-pink-200 text-sm";
+        statut.textContent = joueur.statut;
+
         const boutonModifier = document.createElement("button");
         boutonModifier.type = "button";
         boutonModifier.textContent = "🖊️";
@@ -64,7 +75,7 @@ export const afficherJoueurs = () => {
         boutonSupprimer.setAttribute("aria-label", `Supprimer ${joueur.nom}`);
         boutonSupprimer.addEventListener("click", () => supprimerJoueur(index));
 
-        informations.append(nom, poste);
+        informations.append(nom, poste, ageJoueur, statut);
         contenu.append(numero, informations, boutonModifier, boutonSupprimer);
         carte.append(contenu);
         listeJoueurs.append(carte);
@@ -81,6 +92,9 @@ const modifierJoueur = (index) => {
     indexJoueurAModifier = index;
     champNom.value = joueur.nom;
     champNumero.value = joueur.numero;
+    age.value = joueur.age;
+
+    document.getElementById("statut-joueur").value = joueur.statut || "En forme";
 
     const posteSelectionne = formulaireJoueurs.querySelector(
         `input[name="poste-joueur"][value="${joueur.poste}"]`
@@ -143,15 +157,20 @@ formulaireJoueurs.addEventListener("submit", evenement => {
 
     const nom = champNom.value.trim();
     const numero = Number(champNumero.value);
+
     const posteSelectionne = formulaireJoueurs.querySelector(
         'input[name="poste-joueur"]:checked'
     );
+
+    const ageJoueur = Number(age.value);
+    const statutJoueur = document.getElementById("statut-joueur").value;
 
     const erreur = validerDonneesJoueur(
         nom,
         numero,
         posteSelectionne,
         joueurs,
+        ageJoueur,
         indexJoueurAModifier
     );
 
@@ -161,9 +180,11 @@ formulaireJoueurs.addEventListener("submit", evenement => {
     }
 
     const joueurMisAJour = {
-        nom,
-        numero,
+        nom: nom,
+        numero: numero,
         poste: posteSelectionne.value,
+        age: ageJoueur,
+        statut: statutJoueur,
         emplacement: indexJoueurAModifier !== null
             ? joueurs[indexJoueurAModifier].emplacement || "banc"
             : "banc"
@@ -179,3 +200,4 @@ formulaireJoueurs.addEventListener("submit", evenement => {
     afficherJoueurs();
     fermerFormulaire();
 });
+afficherJoueurs();

@@ -9,6 +9,7 @@ export const boutonOuverture = document.querySelector("#ouvrir-formulaire");
 export const boutonsFermeture = document.querySelectorAll(".fermer-formulaire");
 export const titreFormulaire = document.querySelector("#titre-formulaire");
 export const boutonAjouter = formulaireJoueurs.querySelector('button[type="submit"]');
+export const age = document.getElementById("age");
 
 export const afficherErreur = (message) => {
     retourFormulaire.textContent = message;
